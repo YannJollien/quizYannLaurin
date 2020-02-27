@@ -91,10 +91,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="änderung 15:27" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1582813652982">
+    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1582813801905">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582813652982" />
+    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582813801905" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1582813832570">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1582813832570" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582813774329">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
