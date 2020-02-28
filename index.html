@@ -5,43 +5,137 @@
 	
 	
 <script>
-function evaluateQuestion() {   	
-  	var points =0;
-	var radios = document.getElementsByName('antwort10');
-  	for (var i = 0, length = radios.length; i < length; i++) {
-  		if (radios[i].checked) {
-			if(radios[i].value == 1){
-				points++;
+
+	var pos = 0;
+	var correct = 0;
+	var quiz, test_status, question, choice, choices, chA, chB, chC, chD;
+
+	var questions = [
+		["What is the name of the capital of Switzerland?", "Genf", "Basel", "Lausanne", "Bern"],
+		["What is the name of the biggest city in Switzerland?", "Genf", "Lausanne", "Bern", "Zurich"],
+		["Who became a national hero out of a work by the German poet Schiller?", "Adolf Ogi", " André Bucher", "Willhelm Tell", "Roger Schawinsky"],
+		["Switzerland has common borders with how many countries?", "3", "4", "5", "6"],
+		["Who is the federal president of switzerland", "Simonetta Sommaruga", "Alain Berset", "Guy Parmelin", "Viola Amherd"]
+	];
+
+	function getDocument(x){
+		return document.getElementById(x);
+	}
+
+	function renderQuestion(){
+		quiz = getDocument("quiz");
+		if(pos >= questions.length){
+			quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
+			getDocument("test_status").innerHTML = "Test completed";
+			// resets the variable to allow users to restart the test
+			pos = 0;
+			correct = 0;
+			// stops rest of renderQuestion function running when test is completed
+			return false;
+		}
+
+		getDocument("test_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
+		question = questions[pos][0];
+		chA = questions[pos][1];
+		chB = questions[pos][2];
+		chC = questions[pos][3];
+		chD = questions[pos][4];
+		quiz.innerHTML = "<h3>"+question+"</h3>";
+		// the += appends to the data we started on the line above
+		quiz.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
+		quiz.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
+		quiz.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br>";
+		quiz.innerHTML += "<input type='radio' name='choices' value='D'> "+chD+"<br><br>";
+		quiz.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+	}
+
+	function checkAnswer(){
+		// use getElementsByName because we have an array which it will loop through
+		choices = document.getElementsByName("choices");
+		for(var i=0; i<choices.length; i++){
+			if(choices[i].checked){
+				choice = choices[i].value;
 			}
-   		}
-	 }
-	var nextPage = './q2.html?p='+points
-    window.open(nextPage,'_self')  
-}                
+		}
+
+
+		// checks if answer matches the correct choice
+		if((pos)==0 && choice == "D"){
+			//each time there is a correct answer this value increases
+
+			correct++;
+		}
+
+		if((pos)==1 && choice == "D"){
+			//each time there is a correct answer this value increases
+
+			correct++;
+		}
+
+		if((pos)==2 && choice == "C"){
+			//each time there is a correct answer this value increases
+
+			correct++;
+			correct++;
+		}
+
+		if((pos)==3 && choice == "C"){
+			//each time there is a correct answer this value increases
+
+			correct++;
+		}
+
+		if((pos)==4 && choice == "A"){
+			//each time there is a correct answer this value increases
+
+			correct++;
+		}
+
+		// changes position of which character user is on
+		pos++;
+		// then the renderQuestion function runs again to go to next question
+		renderQuestion();
+	}
+
+	window.addEventListener("load", renderQuestion, false);
+
+	//Timer
+	var timeleft = 10;
+
+	var downloadTimer = setInterval(function(){
+		if(timeleft <= 0){
+			clearInterval(downloadTimer);
+			document.getElementById("countdown").innerHTML = "Finished";
+		} else {
+			console.log("time "+timeleft)
+			document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+		}
+		timeleft -= 1;
+	}, 1000);
+
 </script>
+
+	<link rel="stylesheet" href="style.css">
 
 </head>
 
 
                              
 <body>                         
-	 
-<h1> Quiz </h1>
-This is an example for a small quiz game, consisting of five questions: 
-<!--  Questions taken from http://www.testedich.de/quizerstellungneu/dasquiztd.php3?testid=999895847 -->
 
-<h2> 1. Question </h2>         
-What is the name of the capital of Switzerland?   <br>
-<form name="question1">
-<INPUT TYPE="RADIO" NAME="antwort10" VALUE="0"> Genf        <br>   
-<INPUT TYPE="RADIO" NAME="antwort10" VALUE="0"> Z&uumlrich   <br>   
-<INPUT TYPE="RADIO" NAME="antwort10" VALUE="0"> Basel       <br>   
-<INPUT TYPE="RADIO" NAME="antwort10" VALUE="0"> Luzern      <br>   
-<INPUT TYPE="RADIO" NAME="antwort10" VALUE="1"> Bern        <br>   
-	</B>
-<input type="button" VALUE="next"
- onclick="evaluateQuestion();">    
-</form>                                           
+<div id="all">
+	<h1> Quiz </h1>
+	Welcome to our quiz game, you will have to answer 10 questions! Do your best:
+	<!--  Questions taken from http://www.testedich.de/quizerstellungneu/dasquiztd.php3?testid=999895847 -->
+	<h2 id="test_status"></h2>
+	<div id="quiz"></div>
+	<div id="countdown"></div>
+
+
+
+</div>
+
+
 </body>
 
 </html>

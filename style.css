@@ -1,0 +1,17 @@
+#all{
+    background-color: #99e6ff;
+    text-align: center;
+    margin-right: 200px;
+    margin-left: 200px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+#quiz{
+
+}
+
+input[type="radio"] {
+    margin-top: -1px;
+    vertical-align: middle;
+}
