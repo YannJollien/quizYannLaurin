@@ -7,11 +7,19 @@
     padding-top: 50px;
 }
 
-#quiz{
-
-}
-
 input[type="radio"] {
-    margin-top: -1px;
-    vertical-align: middle;
+     margin-top: -1px;
+     vertical-align: middle;
+ }
+
+#countdown{
+    font-size: 40px;
+    cursor: pointer;
+    display: block;
+    float: right;
+    z-index: 3;
+    position: absolute; /*newly added*/
+    right: 220px; /*newly added*/
+    top: 10px;/*newly added*/
 }
+

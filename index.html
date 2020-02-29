@@ -9,6 +9,7 @@
 	var pos = 0;
 	var correct = 0;
 	var quiz, test_status, question, choice, choices, chA, chB, chC, chD;
+	var timeleft = 11;
 
 	var questions = [
 		["What is the name of the capital of Switzerland?", "Genf", "Basel", "Lausanne", "Bern"],
@@ -91,6 +92,8 @@
 			correct++;
 		}
 
+		timeleft = 11;
+
 		// changes position of which character user is on
 		pos++;
 		// then the renderQuestion function runs again to go to next question
@@ -100,15 +103,19 @@
 	window.addEventListener("load", renderQuestion, false);
 
 	//Timer
-	var timeleft = 10;
 
 	var downloadTimer = setInterval(function(){
+		console.log("Pos "+pos)
 		if(timeleft <= 0){
 			clearInterval(downloadTimer);
-			document.getElementById("countdown").innerHTML = "Finished";
+			pos++;
+			renderQuestion();
+			timeleft = 11;
+			var downloadTimer = setInterval(function(){
+
+			}, 1000);
 		} else {
-			console.log("time "+timeleft)
-			document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+			document.getElementById("countdown").innerHTML = timeleft;
 		}
 		timeleft -= 1;
 	}, 1000);
@@ -124,8 +131,6 @@
 <body>                         
 
 <div id="all">
-	<h1> Quiz </h1>
-	Welcome to our quiz game, you will have to answer 10 questions! Do your best:
 	<!--  Questions taken from http://www.testedich.de/quizerstellungneu/dasquiztd.php3?testid=999895847 -->
 	<h2 id="test_status"></h2>
 	<div id="quiz"></div>
