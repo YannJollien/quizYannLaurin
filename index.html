@@ -9,7 +9,7 @@
 	var pos = 0;
 	var correct = 0;
 	var quiz, test_status, question, choice, choices, chA, chB, chC, chD;
-	var timeleft = 11;
+	var timeleft = 30;
 
 	var questions = [
 		["What is the name of the capital of Switzerland?", "Genf", "Basel", "Lausanne", "Bern"],
@@ -23,20 +23,28 @@
 		["Which city is the seat of International Labour Organization?", "Genf", "Lausanne", "Bern", "St Gallen"],
 		["Which reformer died in Geneva in 1564?", "Martin Luther", "John Calvin", "Ulrich Zwingli", "John Knox"]
 	];
-	
+
 	function getDocument(x){
 		return document.getElementById(x);
 	}
 
 	function renderQuestion(){
 		quiz = getDocument("quiz");
-		if(pos >= questions.length){
+		if(pos >= questions.length || timeleft == 0){
 			quiz.innerHTML = "<h2>You got "+correct+" of "+questions.length+" questions correct</h2>";
 			getDocument("test_status").innerHTML = "Test completed";
 			// resets the variable to allow users to restart the test
-			pos = 0;
+			pos = 10;
 			correct = 0;
 			// stops rest of renderQuestion function running when test is completed
+			//Display image
+			if (correct >= 7){
+				show_image('images/hoch.png',100,100,'Swiss flag');
+			}
+			if (correct <7){
+				show_image('images/runter.png',100,100,'Swiss flag');
+			}
+			timeleft = 0;
 			return false;
 		}
 
@@ -52,7 +60,7 @@
 		quiz.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
 		quiz.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br>";
 		quiz.innerHTML += "<input type='radio' name='choices' value='D'> "+chD+"<br><br>";
-		quiz.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+		quiz.innerHTML += "<button class='button2' onclick='checkAnswer()'>Submit Answer</button>";
 	}
 
 	function checkAnswer(){
@@ -63,7 +71,6 @@
 				choice = choices[i].value;
 			}
 		}
-
 
 		// checks if answer matches the correct choice
 		if((pos)==0 && choice == "D"){
@@ -114,9 +121,6 @@
 			//each time there is a correct answer this value increases
 			correct++;
 		}
-
-		timeleft = 11;
-
 		// changes position of which character user is on
 		pos++;
 		// then the renderQuestion function runs again to go to next question
@@ -128,20 +132,35 @@
 	//Timer
 
 	var downloadTimer = setInterval(function(){
-		console.log("Pos "+pos)
+		console.log(timeleft)
 		if(timeleft <= 0){
 			clearInterval(downloadTimer);
-			pos++;
+			document.getElementById("countdown").innerHTML = "Finished";
 			renderQuestion();
-			timeleft = 11;
-			var downloadTimer = setInterval(function(){
 
-			}, 1000);
 		} else {
-			document.getElementById("countdown").innerHTML = timeleft;
+			document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
 		}
 		timeleft -= 1;
 	}, 1000);
+
+	//Image at end
+	function show_image(src, width, height, alt) {
+		var img = document.createElement("img");
+		img.src = src;
+		img.width = width;
+		img.height = height;
+		img.alt = alt;
+		img.style.right = '420px';
+		img.style.top = '200px';
+		img.style.position = 'absolute';
+		img.style.display = 'block';
+		img.style.float = 'right'
+
+		// This next line will just add it to the <body> tag
+		document.body.appendChild(img);
+	}
+
 
 </script>
 

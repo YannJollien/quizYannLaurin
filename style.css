@@ -5,12 +5,47 @@
     margin-left: 200px;
     padding-bottom: 50px;
     padding-top: 50px;
+    border: 2px solid;
+    margin-top: 100px;
 }
 
 input[type="radio"] {
      margin-top: -1px;
      vertical-align: middle;
  }
+
+.button {
+    padding: 10px 15px;
+    font-size: 22px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ff3333;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+.button2 {
+    padding: 5px 10px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #ff3333;
+    border: none;
+    border-radius: 15px;;
+}
+
+.button:hover {background-color: #e60000}
+
+#quiz{
+    border: 2px solid;
+    margin-left: 500px;
+    margin-right: 500px;
+    padding-bottom: 10px;
+}
 
 #countdown{
     font-size: 40px;
@@ -20,6 +55,30 @@ input[type="radio"] {
     z-index: 3;
     position: absolute; /*newly added*/
     right: 220px; /*newly added*/
-    top: 10px;/*newly added*/
+    top: 100px;/*newly added*/
+}
+
+#image1{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: block;
+    float: right;
+    z-index: 3;
+    position: absolute; /*newly added*/
+    right: 420px; /*newly added*/
+    top: 200px;/*newly added*/
+}
+
+#image2{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: block;
+    float: right;
+    z-index: 3;
+    position: absolute; /*newly added*/
+    right: 1420px; /*newly added*/
+    top: 200px;/*newly added*/
 }
 
